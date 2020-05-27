@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title></title>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/virus.css"/>
 	</head>
 	<body>
@@ -62,55 +63,24 @@
 						<div class="t_column">死亡</div>
 						<div class="t_column">治愈</div>
 					</div>
-	
-					<div class="t_row">
-						<div class="t_column">香港</div>
-						<div class="t_column">1065</div>
-						<div class="t_column">4</div>
-						<div class="t_column">1033</div>
-					</div>
-					
-					<div class="t_row">
-						<div class="t_column">内蒙古</div>
-						<div class="t_column">232</div>
-						<div class="t_column">1</div>
-						<div class="t_column">205</div>
-					</div>
-					<div class="cities" style="display: none;">
-						<div class="city">
-							<div class="t_column">city1</div>
-							<div class="t_column">10</div>
-							<div class="t_column">10</div>
-							<div class="t_column">0</div>
-						</div>
-						<div class="city">
-							<div class="t_column">city1</div>
-							<div class="t_column">10</div>
-							<div class="t_column">10</div>
-							<div class="t_column">0</div>
-						</div>
-					</div>
+
+                    <template v-for="p in newslist">
+						 <div class="t_row">
+						 	<div class="t_column">{{p.provinceShortName}}</div>
+						 	<div class="t_column">{{p.confirmedCount}}</div>
+						 	<div class="t_column">{{p.deadCount}}</div>
+						 	<div class="t_column">{{p.curedCount}}</div>
+						 </div>
+						 <div class="cities" style="display: none;">
+						 	<div class="city" v-for="c in p.cities">
+						 		<div class="t_column">{{c.cityName}}</div>
+						 		<div class="t_column">{{c.confirmedCount}}</div>
+						 		<div class="t_column">{{c.deadCount}}</div>
+						 		<div class="t_column">{{c.curedCount}}</div>
+						 	</div>						 	
+						 </div>
+					</template>
 										
-					<div class="t_row">
-						<div class="t_column">吉林</div>
-						<div class="t_column">155</div>
-						<div class="t_column">2</div>
-						<div class="t_column">8</div>
-					</div>
-					<div class="cities" style="display: none;">
-						<div class="city">
-							<div class="t_column">city1</div>
-							<div class="t_column">10</div>
-							<div class="t_column">10</div>
-							<div class="t_column">0</div>
-						</div>
-						<div class="city">
-							<div class="t_column">city1</div>
-							<div class="t_column">10</div>
-							<div class="t_column">10</div>
-							<div class="t_column">0</div>
-						</div>
-					</div>						
 				</div>
 			</div>
 		</div>
