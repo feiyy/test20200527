@@ -11,11 +11,7 @@ var app = new Vue({
 			if(!this.flag)
 			{
 				this.message = 'read more';
-				var temp = [];
-				for(var i=0; i<6;i++)
-				{
-					temp.push(this.newslist[i])
-				}
+				var temp = this.newslist.slice(0,6);				
 				return temp;
 			}
 			else
@@ -31,5 +27,20 @@ var app = new Vue({
 			console.log(res);
 			this.newslist = res.data.newslist;
 		})	
+	},
+	methods:{
+		toggleCity(p,index)
+		{
+			if(!p.cityDisplayed)
+			{
+				p.cityDisplayed = true;
+			}
+			else
+			{
+				p.cityDisplayed = false;
+			}
+			Vue.set(this.newslist,index,p);//this will trigger view update
+			console.log(p);
+		}
 	}
 })

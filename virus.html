@@ -64,14 +64,14 @@
 						<div class="t_column">治愈</div>
 					</div>
 
-                    <template v-for="p in displaylist">
-						 <div class="t_row">
+                    <template v-for="(p,index) in displaylist">
+						 <div class="t_row" @click="toggleCity(p,index)">
 						 	<div class="t_column">{{p.provinceShortName}}</div>
 						 	<div class="t_column">{{p.confirmedCount}}</div>
 						 	<div class="t_column">{{p.deadCount}}</div>
 						 	<div class="t_column">{{p.curedCount}}</div>
 						 </div>
-						 <div class="cities" style="display: none;">
+						 <div class="cities" :class="{hidecity:!p.cityDisplayed}">
 						 	<div class="city" v-for="c in p.cities">
 						 		<div class="t_column">{{c.cityName}}</div>
 						 		<div class="t_column">{{c.confirmedCount}}</div>
@@ -83,7 +83,7 @@
 										
 				</div>
 			
-			    <div @click="flag = !flag">{{message}}</div>
+			    <div style="text-align: center;" @click="flag = !flag">{{message}}</div>
 			
 			</div>
 		</div>
