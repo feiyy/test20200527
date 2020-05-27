@@ -1,5 +1,6 @@
 body{
 	margin:0px;
+	min-width: 600px;
 }
 
 .banner_img{
@@ -70,4 +71,16 @@ body{
 
 .hidecity{
 	display: none;
+}
+
+.t_column
+{
+	position:relative;
+}
+
+.fa-caret-down:before, .fa-caret-up:before{
+	position:absolute;
+	right:11.9%;
+	top:13px;
+	
 }

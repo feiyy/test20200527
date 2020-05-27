@@ -72,8 +72,9 @@
 						 	<div class="t_column">{{p.deadCount}}</div>
 						 	<div class="t_column">
 							{{p.curedCount}}
-							<i class="fa fa-caret-down" aria-hidden="true" style="font-size:30px;color:darkgray;margin-left:20px"></i>
-							</div>
+							   <i v-if="!p.cityDisplayed" class="fa fa-caret-down" aria-hidden="true" style="font-size:30px;color:darkgray;"></i>
+							   <i v-else class="fa fa-caret-up" aria-hidden="true" style="font-size:30px;color:darkgray;"></i>
+							</div>							
 						 </div>
 						 <div class="cities" :class="{hidecity:!p.cityDisplayed}">
 						 	<div class="city" v-for="c in p.cities">
