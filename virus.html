@@ -6,6 +6,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/virus.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.css"/>
 	</head>
 	<body>
 		<div id="app">
@@ -64,12 +65,15 @@
 						<div class="t_column">治愈</div>
 					</div>
 
-                    <template v-for="(p,index) in displaylist">
+                    <div v-for="(p,index) in displaylist" :key="p.provinceShortName">
 						 <div class="t_row" @click="toggleCity(p,index)">
 						 	<div class="t_column">{{p.provinceShortName}}</div>
 						 	<div class="t_column">{{p.confirmedCount}}</div>
 						 	<div class="t_column">{{p.deadCount}}</div>
-						 	<div class="t_column">{{p.curedCount}}</div>
+						 	<div class="t_column">
+							{{p.curedCount}}
+							<i class="fa fa-caret-down" aria-hidden="true" style="font-size:30px;color:darkgray;margin-left:20px"></i>
+							</div>
 						 </div>
 						 <div class="cities" :class="{hidecity:!p.cityDisplayed}">
 						 	<div class="city" v-for="c in p.cities">
@@ -79,7 +83,7 @@
 						 		<div class="t_column">{{c.curedCount}}</div>
 						 	</div>						 	
 						 </div>
-					</template>
+					</div>
 										
 				</div>
 			
