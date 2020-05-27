@@ -64,7 +64,7 @@
 						<div class="t_column">治愈</div>
 					</div>
 
-                    <template v-for="p in newslist">
+                    <template v-for="p in displaylist">
 						 <div class="t_row">
 						 	<div class="t_column">{{p.provinceShortName}}</div>
 						 	<div class="t_column">{{p.confirmedCount}}</div>
@@ -82,6 +82,9 @@
 					</template>
 										
 				</div>
+			
+			    <div @click="flag = !flag">{{message}}</div>
+			
 			</div>
 		</div>
 		<script type="text/javascript" src="js/virus.js"></script>
