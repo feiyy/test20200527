@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	
+	<div id="app">
+		{{message}}
+		
+		<!--v-bind: directive v-
+		 
+		 can be omitted-->
+		<div :title="hint">
+			some text
+		</div>
+		<div>
+			<img :src="imgpath"  />
+		</div>
+		<div v-show="seen">
+			conditional text
+		</div>
+		<div>
+			<ol>
+				<li v-for="item in todos">
+					{{item.text}}
+				</li>
+			</ol>
+		</div>
+		<div>
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Sex</th>
+					<th>Job</th>
+				</tr>
+				<tr v-for="emp in emps">
+					<td>
+						{{emp.name}}
+					</td>
+					<td>
+						{{emp.sex}}
+					</td>
+					<td>
+						{{emp.job}}
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<!--events-->
+		<!--
+		   v-bind:xx => shorthand: :xx
+		   v-on:xx => shorthand: @xx
+		-->
+		<button @click="reverseMessage">reverse the message</button>
+		
+		<input v-model="message" />
+		
+		
+		
+	</div>
+	
+	<script>
+		var app = new Vue({
+			el:"#app",
+			data:{
+				message:"helloworld2",
+				hint:"this is hint",
+				imgpath:"img/riverflowsinyou.jpg",
+				seen:true,
+				todos:[
+					{text:"text1"},
+					{text:"text2"},
+					{text:"text3"}
+				],
+				emps:[
+					{name:"feiyy", sex:"female", job:"teacher"},
+					{name:"jack", sex:"male", job:"engineer"},
+					{name:"tom", sex:"male", job:"security guard"}
+				]
+			},
+			methods:{
+				reverseMessage()
+				{
+					this.message = this.message.split('').reverse().join('');
+				}
+			}
+		});
+	</script>
+	
+</body>
+</html>

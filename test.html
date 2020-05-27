@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ol>
+				<todo-item v-for="item in groceryList" :todo="item" :key="item.id"></todo-item>							
+			</ol>
+		</div>
+		
+		
+		<script>
+			/**
+			   difference between js object and json object(ajax)?
+			   1. json object, field have ""
+			   2. json object not have methods
+			   3. json object only have three data types: string, number, boolean. 
+			**/
+			
+			//Register a component(global component, local component)
+			Vue.component('todo-item',{
+				props:['todo'],
+				template:'<li>{{todo.text}}</li>'
+			})
+			var app = new Vue({
+				el:'#app',
+				data:{
+					groceryList:[
+						{
+							id:0, text:'Vegetables'
+						},
+						{
+							id:1, text:'Vegetables'
+						},
+						{
+							id:2, text:'Fruit'
+						}
+					]
+				}
+			})
+			
+		</script>
+	</body>
+</html>

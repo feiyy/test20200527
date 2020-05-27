@@ -1,0 +1,29 @@
+body{
+	margin:0px;
+}
+
+/**
+ * vh, vw:defined in css3
+ * **/
+.nav{
+	height: 20vh;
+	background-color: gray;
+}
+
+.view{
+	height: 80vh;
+	display: flex;
+	
+}
+
+.sidebar{
+	width:60vw;
+	height: 100%;
+	background-color: blueviolet;
+}
+
+.content{
+	width:40vw;
+	height: 100%;
+	background-color: aquamarine;
+}

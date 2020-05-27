@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	    <link rel="stylesheet" type="text/css" href="css/test2.css"/>
+	</head>
+	<body>
+		<div id="app">
+		  <app-nav class="nav"></app-nav>
+		  <app-view class="view">
+		    <app-sidebar class="sidebar"></app-sidebar>
+		    <app-content class="content"></app-content>
+		  </app-view>
+		</div>
+		
+		<script>
+			
+			Vue.component('app-nav',{
+				template:'<div></div>'
+			})
+			
+			Vue.component('app-view',{
+				template:'<div><slot></slot></div>'
+			})
+			
+			Vue.component('app-sidebar',{
+				template:'<div></div>'
+			})
+			
+			Vue.component('app-content',{
+				template:'<div></div>'
+			})
+			
+			
+			var app = new Vue({
+				el:"#app",
+				data:{}
+			})
+		</script>
+	</body>
+</html>

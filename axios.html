@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				 <p>Ask a yes/no question:</p>
+				<input type="text" v-model="question"/>
+			</div>
+			
+			<div>
+				{{answer}}
+			</div>
+			
+		</div>
+		
+		<script type="text/javascript">
+			
+			var app = new Vue({
+				el:"#app",
+				data:{
+					question:'',
+					answer:'I cannot give you an answer until you ask a question!',					
+				},
+				watch:{
+					question(newv)
+					{
+						//console.log(newv)
+						//this.getResult()
+						//this.getDebouncedResult()
+						var func =  _.debounce(this.getResult, 3000);	
+						func(); 
+					}
+				},
+				/* created()
+				{
+					this.getDebouncedResult =  _.debounce(this.getResult, 3000);					
+				}, */
+				methods:{				
+					getResult()
+					{
+						console.log("getresult");
+						if(this.question.indexOf('?')== -1)
+						{
+							this.answer = 'Questions usually contain a question mark. ;-'
+							return
+						}
+						//send a ajax request
+						//ajax is asynchronouse, so we must provide a callback function to get the result.
+						axios.get('https://yesno.wtf/api')
+						     .then(res=>{
+								 //inside arrow function(new feature in es6), this == app
+								 console.log(res);
+								 this.answer = res.data.answer
+							 })
+							 .catch(function(err){
+								 
+						}) 
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

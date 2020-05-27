@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(item, index) in items" :key="item.message">
+					{{index}} | {{item.message}}
+				</li>
+			</ul>
+			
+			<ul id="v-for-object" class="demo">
+			  <li v-for="value in object">
+			    {{ value }}
+			  </li>
+			</ul>
+					
+			<button type="button" @click="changev">change array element</button>
+			
+			<ul>
+				<li v-for="item in evenNumber">
+					{{item}}
+				</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					numbers:[1,2,3,4,5],
+					 parentMessage: 'Parent',
+					    items: [
+					      { message: 'Foo' },
+					      { message: 'Bar' }
+					    ],
+						 object: {
+						      title: 'How to do lists in Vue',
+						      author: 'Jane Doe',
+						      publishedAt: '2016-04-10'
+						    }
+				},
+				computed:{
+					evenNumber()
+					{
+						return this.numbers.filter(function(item){
+							return item%2==0
+						})
+					}
+				},
+				methods:{
+					changev()
+					{
+						Vue.set(this.items,0,{message:'xxx'})
+					}
+				}
+				
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{message}}
+			<div v-text="message"></div>
+			<button :disabled="flag">button</button>
+			<div>
+				{{number + 1}}
+			</div>
+			<div>
+				<!--
+				in js, only 5 values means false: '',0,null, undefined,false
+				-->
+				{{ok?'yes':'no'}}
+			</div>
+			<div>
+				{{msg.split('').reverse().join('')}}
+			</div>
+			
+			<div :id="'list-' + id"></div>
+		</div>
+		
+		<script>
+			var app = new Vue({
+				el:"#app",
+				data:{
+					id:1000,
+					msg:"helloworld",
+					ok:true,
+					number:10,
+					flag:false,
+					message:"<font color='red'>some red text</font>"
+				},
+				created(){
+					console.log(this.message);
+					//alert("created");
+				},
+				mounted(){
+					console.log(this.message);
+					//alert("mounted");
+				},
+				beforeUpdate()
+				{
+					console.log(this.message);
+					//alert("beforeUpdate");
+				},
+				updated()
+				{
+					console.log(this.message);
+					//alert("updated");
+				}
+			})
+		</script>
+	</body>
+</html>

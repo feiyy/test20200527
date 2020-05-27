@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#container{
+				border:1px solid red;
+			}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!-- <script type="text/javascript">
+			function dosubmit()
+			{
+				console.log("dosubmit");
+				event.preventDefault();//prevent default brower behavior
+			}
+		</script> -->
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<div id="container">
+				<button v-on:click="counter += 1">Add 1</button>
+				<p>The button above has been clicked {{ counter }} times.</p>
+				 
+				<button type="button" @click="greet($event)">Greet</button>
+				
+				<form @submit.prevent="dosubmit">
+						<input type="text" />
+						<button type="submit">submit</button> 
+				</form>
+				
+				<!--propagation-->
+				<div class="div3" @click="func3">
+					 <div class="div2" @click="func2">
+					 	<button type="button" @click.stop="func1">button</button>
+					 </div>
+				</div>
+				
+				<!--
+				once
+				-->
+				<button type="button" @click.once="func1">once</button>
+				
+				<!--key modifier-->
+				<input type="text" />
+				
+				<button type="text" @keyup.enter="func1">click on me</button>
+				
+			</div>
+					 
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					counter:0
+				},	
+			    created()
+				{
+					window.onkeyup=function()
+					{
+						console.log(event.keyCode)
+						if(event.keyCode == 13)
+						{
+							app.func1();
+						}
+					}
+				}, 
+				methods:{
+					func1()
+					{
+						alert(1);				
+					},		
+					func2()
+					{
+						alert(2);
+						//event.stopPropagation();
+					},					
+					func3()
+					{
+						alert(3);
+					},
+					greet(e){
+						console.log(e);
+					},
+					dosubmit()
+					{
+						console.log("dosubmit")
+					}
+				}				
+			})
+		</script>
+	</body>
+</html>

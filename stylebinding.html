@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			/**
+			 * style > class
+			 **/
+			.active{
+				width:300px;
+				height: 300px;
+				border:1px solid red;
+			}
+			.text-danger{
+				color: red;
+			}
+			.bg{
+				background-color: yellow!important;
+			}
+			.bg2{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!--plain class-->
+			<div class="bg bg2" :class="[isActive?activeClass:'', dangerClass]">some text</div>
+			<div :class="[{active:isActive}, dangerClass]">some text</div>
+			
+			<div :style="{color:activeColor, 'font-size':fontSize}">some text</div>
+			
+			<div :style="styleObject">some text</div>
+			
+			<div style="font-weight: bold;" :style="[styleObject,styleObject2]">some text</div>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					activeColor: 'blue',
+					fontSize:'30px',
+					isActive:true,
+					activeClass:'active',
+					dangerClass:'text-danger',
+					styleObject:{color:'green', 'font-size':'20px'},
+					styleObject2:{background:'yellow'}
+				}
+			})
+		</script>
+	</body>
+</html>

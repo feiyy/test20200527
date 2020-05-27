@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			
+			<template v-if="loginType == 'username'">
+			  <label>Username</label>
+			  <input placeholder="Enter your username" key="username">
+			</template>
+			<template v-else>
+			  <label>Email</label>
+			  <input placeholder="Enter your email address" key="email">
+			</template>
+			<button type="button" @click="switchType">switch</button>
+			
+			
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					loginType:'username'
+				},
+				methods:{
+					switchType()
+					{
+						if(this.loginType == 'username')
+						{
+							this.loginType = 'email'
+						}
+						else
+						{
+							this.loginType = 'username'
+						}
+					}
+				}
+				
+			})
+		</script>
+	</body>
+</html>
