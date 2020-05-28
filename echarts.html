@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<div id="echarts" style="width:600px;height: 400px;">
+			
+		</div>
+		
+		<script type="text/javascript">
+			//1. create a echarts instance
+			var myChart = echarts.init(document.getElementById("echarts"));
+			//2. define chart options
+			var option = {
+				/* title: {
+					text: 'ECharts 入门示例'
+				}, */
+				/* tooltip: {}, */
+				legend: {
+					/* data:['销量'] */
+				},
+				xAxis: {
+					data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+				},
+				yAxis: {},
+				series: [{
+					name: '2018销量',
+					type: 'bar',
+					data: [5, 200, 36, 10, 10, 20]
+				},
+				{
+					name: '2019销量',
+					type: 'bar',
+					data: [6, 100, 55, 43, 22, 80]
+				},
+				{
+					name: '2020销量',
+					type: 'line',
+					data: [5, 88, 47, 98, 27, 66]
+				},
+				]
+			}; 
+			//3. link the echarts instance with options
+			myChart.setOption(option);
+		</script>
+	</body>
+</html>
