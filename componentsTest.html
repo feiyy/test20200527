@@ -13,7 +13,7 @@
 			<button-counter></button-counter>
 			
 			<div :style="{'font-size': postFontSize +'px'}">
-				<blog-post @enlarge="postFontSize+=1" v-for="p in posts" :p="p" :key="p.id"></blog-post>
+				<blog-post @enlarge="func" v-for="p in posts" :p="p" :key="p.id"></blog-post>
 			</div>	
 		</div>
 		
@@ -21,10 +21,17 @@
 			
 			Vue.component('blog-post',{
 				 props: ['p'],
+				 data()
+				 {
+				 	return {
+				 		num:0
+				 	}
+				 },
 				 template: `<div>,
 				               <h3>{{ p.title }}</h3>
 							   <h3>{{ p.content }}</h3>
-							   <button @click="$emit('enlarge')">enlarge</button>
+							   <input type="text" v-model.number='num' />
+							   <button @click="$emit('enlarge',num)">enlarge</button>
 							</div>`
 			})
 			
@@ -49,6 +56,12 @@
 					      { id: 2, title: 'Blogging with Vue',content:'xxxx2' },
 					      { id: 3, title: 'Why Vue is so fun',content:'xxxx2' }
 					    ]
+				},
+				methods:{
+					func(arg)
+					{
+						this.postFontSize+=arg;
+					}
 				}
 			})
 		</script>
