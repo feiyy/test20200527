@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			/* .pop{
+				position:fixed;
+				left:100p;
+				top:100px;
+				background-color: white;
+			} */
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<table>
+				<tr>
+					<th>id</th>
+					<th>name</th>
+					<th>age</th>
+					<th>sex</th>
+					<th></th>
+				</tr>
+				<tr v-for="item in users" :key="item.id">
+					<td>{{item.id}}</td>
+					<td>{{item.name}}</td>
+					<td>{{item.age}}</td>
+					<td>{{item.sex}}</td>
+					<td><button type="button" @click="showupdate(item)">edit</button></td>
+				</tr>
+			</table>
+			
+			<user-update class="pop" v-show="updateShow" :item="selectedItem" @get-update="getUpdateData"></user-update>
+			
+			<!--user update component-->
+		</div>
+		<script type="text/javascript">
+			
+			Vue.component('user-update',{
+				props:['item'],
+				template:`<div v-if="item">
+				        	<div>
+				        		{{item.id}}
+				        	</div>
+				        	<div>
+				        		<input type="text" v-model="item.name" />
+				        	</div>
+				        	<div>
+				        		<input type="text" v-model="item.age" />
+				        	</div>
+				        	<div>
+				        		<input type="text" v-model="item.sex" />
+				        	</div>
+							<div>
+							    <button type="button" @click="$emit('get-update',item)">save</button>
+							</div>
+				        </div>`
+				
+			})
+			
+			var app = new Vue({
+				el:"#app",
+				data:{
+					updateShow:false,
+					selectedItem:{},
+					users:[
+						{id:1,name:'Jack', age:40, sex:'male'},
+						{id:2,name:'George', age:18, sex:'male'},
+						{id:3,name:'Lucy', age:22, sex:'female'}
+					]
+				},
+				methods:{
+					showupdate(item)
+					{
+						this.updateShow = !this.updateShow;
+						this.selectedItem = JSON.parse(JSON.stringify(item));
+					},
+					getUpdateData(updatedItem)
+					{
+						this.updateShow = !this.updateShow;
+						var list = this.users;
+						for(var i=0; i<list.length;i++)
+						{
+							if(list[i].id == updatedItem.id)
+							{
+								list[i].name = updatedItem.name;
+								list[i].age = updatedItem.age;
+								list[i].sex = updatedItem.sex;
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
