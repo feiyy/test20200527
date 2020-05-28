@@ -11,9 +11,21 @@
 			<button-counter></button-counter>
 			<button-counter></button-counter>
 			<button-counter></button-counter>
+			
+			<div>
+				<blog-post v-for="p in posts" :p="p" :key="p.id"></blog-post>
+			</div>	
 		</div>
 		
 		<script type="text/javascript">
+			
+			Vue.component('blog-post',{
+				 props: ['p'],
+				 template: `<div>,
+				               <h3>{{ p.title }}</h3>
+							   <h3>{{ p.content }}</h3>
+							</div>`
+			})
 			
 			Vue.component('button-counter',{
 				data()
@@ -29,7 +41,13 @@
 			
 			var app = new Vue({
 				el:"#app",
-				data:{}
+				data:{
+					 posts: [
+					      { id: 1, title: 'My journey with Vue', content:'xxxx1' },
+					      { id: 2, title: 'Blogging with Vue',content:'xxxx2' },
+					      { id: 3, title: 'Why Vue is so fun',content:'xxxx2' }
+					    ]
+				}
 			})
 		</script>
 	</body>
