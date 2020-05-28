@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<span @click="selectedComponent='tab-one'">tab one</span> <span @click="selectedComponent='tab-two'">tab two</span>
+			
+			<component :is="selectedComponent"></component>
+		</div>
+		<script type="text/javascript">
+			
+			Vue.component('tab-one',{
+				template:'<div>table one ......</div>'
+			})
+			
+			
+			Vue.component('tab-two',{
+				template:'<div>table two ......</div>'
+			})
+			
+			var app = new Vue({
+				
+				el:"#app",
+				data:{
+					selectedComponent:'tab-one'
+				}
+				
+				
+			})
+		</script>
+	</body>
+</html>
