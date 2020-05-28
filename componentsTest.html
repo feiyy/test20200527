@@ -12,8 +12,8 @@
 			<button-counter></button-counter>
 			<button-counter></button-counter>
 			
-			<div>
-				<blog-post v-for="p in posts" :p="p" :key="p.id"></blog-post>
+			<div :style="{'font-size': postFontSize +'px'}">
+				<blog-post @enlarge="postFontSize+=1" v-for="p in posts" :p="p" :key="p.id"></blog-post>
 			</div>	
 		</div>
 		
@@ -24,6 +24,7 @@
 				 template: `<div>,
 				               <h3>{{ p.title }}</h3>
 							   <h3>{{ p.content }}</h3>
+							   <button @click="$emit('enlarge')">enlarge</button>
 							</div>`
 			})
 			
@@ -42,6 +43,7 @@
 			var app = new Vue({
 				el:"#app",
 				data:{
+					 postFontSize:16,
 					 posts: [
 					      { id: 1, title: 'My journey with Vue', content:'xxxx1' },
 					      { id: 2, title: 'Blogging with Vue',content:'xxxx2' },
